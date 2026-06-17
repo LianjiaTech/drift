@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="DRIFT: Online Self-Evolution via Difficult Routing Self Distillation">
+  <meta name="description" content="DRIFT：Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DRIFT: Online Self-Evolution via Difficult Routing Self Distillation</title>
+  <title>DRIFT：Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -286,7 +286,7 @@
                 DRIFT:
               </span><br>
               <span class="drsd-subtitle">
-                <span class="drsd-initial">D</span>ifficulty-<span class="drsd-initial">R</span>outed self-d<span class="drsd-initial">I</span>stillation with rhythm-gated exploration and success bu<span class="drsd-initial">F</span>fer <span class="drsd-initial">T</span>raining
+                <span class="drsd-initial">D</span>ifficulty <span class="drsd-initial">R</span>outing self-d<span class="drsd-initial">I</span>stillation with rhythm gating exploration and success bu<span class="drsd-initial">F</span>fer <span class="drsd-initial">T</span>raining
               </span>
             </h1>
 
@@ -343,10 +343,7 @@
             <span class="abstract-lead">DRIFT</span> is an open-source online self-evolution policy optimization framework designed to empower large language models with continuous reasoning improvements without relying on external expert supervision.
           </p>
           <p>
-            Traditional self-distillation and RL alignment paradigms often treat model generation trajectories statically and fail to dynamically model the learning progress. This frequently results in redundant computation on simple questions, lack of direction on complex prompts, and sparse exploration at logical boundaries. 
-          </p>
-          <p>
-            By introducing dynamic <strong>Difficulty Routing</strong>, a robust <strong>Success Buffer</strong>, and token-level <strong>Rhythm Gating</strong>, DRIFT builds an adaptive, structured exploration loop that yields stable and scalable policy improvement across diverse disciplines.
+            By introducing dynamic Rhythm Gating, Difficulty Routing, Curriculum learning and Success Buffer, DRIFT builds an adaptive, structured exploration loop that yields stable and scalable policy improvement across diverse disciplines.
           </p>
         </div>
       </div>
@@ -372,7 +369,7 @@
           <figure class="image mb-5">
             <img src="drift_convergence.png" alt="DRIFT Online Self-Evolution Convergence" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
             <figcaption class="mt-2 figure-caption">
-              Online self-evolution convergence and routing distribution.
+              Comparative evaluation of tool use performance.
             </figcaption>
           </figure>
         </div>
@@ -385,20 +382,20 @@
         <p>Our contributions are as follows:</p>
         <ol>
           <li>
-            <strong>Rhythm-gated structured exploration.</strong>
-            We design a structure-preserving exploration mechanism that encourages policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm gating.
+            <strong>Rhythm Gating.</strong>
+            We design a structure-preserving exploration mechanism that encourages policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm Gating.
           </li>
           <li>
-            <strong>Difficulty routing Optimizer.</strong>
+            <strong>Difficulty Routing.</strong>
             We introduce a difficulty routing mechanism that uses historical pass rates as a stable estimate of the model's mastery level. This mechanism dynamically determines when to distill from past successful trajectories, when to explore new strategies, and when to reduce redundant training.
           </li>
           <li>
             <strong>Two-stage curriculum learning.</strong>
-            We propose a two-stage curriculum learning strategy. In the first stage, an efficient SDPO warm-up rapidly improves model pass@k while accumulating a success buffer. In the second stage, SDPO is combined with GRPO to balance exploration, correction, and stable convergence, enabling continuous and stable performance improvement.
+            We propose a two-stage curriculum learning strategy. In the first stage, an efficient SDPO warm-up rapidly elevates the model's capability to a stable plateau while accumulating a success buffer. In the second stage, SDPO is combined with GRPO to balance exploration, correction, and stable convergence, enabling continuous and stable performance improvement.
           </li>
           <li>
-            <strong>Stable self-evolution with success buffer.</strong>
-            DRIFT incorporates a historical success memory, namely the success buffer, to reuse high-quality trajectories. It further adopts a curriculum learning strategy to support smooth model evolution and uses Rhythm gating to provide structured exploration rewards on boundary problems.
+            <strong>Success buffer.</strong>
+            DRIFT incorporates a historical success memory, namely the success buffer, to reuse high-quality trajectories. It further adopts a curriculum learning strategy to support smooth model evolution and uses Rhythm Gating to provide structured exploration rewards on boundary problems.
           </li>
         </ol>
         <p>
@@ -423,11 +420,11 @@
       <div class="content has-text-justified">
         <ul>
           <li>
-            <strong>Rhythm-Gated Structured Exploration.</strong>
-            Standard GRPO applies the same trajectory-level advantage to all tokens, regardless of their importance within the reasoning process. As a result, exploration signals may be diluted by semantically uninformative tokens, leading to noisy credit assignment. To improve exploration efficiency, we introduce Rhythm-Gated Structured Exploration, a token-level weighting mechanism built on top of the GRPO branch. The key idea is to amplify policy updates only when a token simultaneously exhibits strong structural significance and demonstrates local improvement relative to the teacher. The resulting rhythm gate $M^{\mathrm{rhy}}_{i,t}$ selectively enhances exploration at critical reasoning positions while suppressing unnecessary perturbations elsewhere. This leads to more targeted exploration and more efficient policy refinement near the success boundary.
+            <strong>Rhythm Gating.</strong>
+            Standard GRPO applies the same trajectory-level advantage to all tokens, regardless of their importance within the reasoning process. As a result, exploration signals may be diluted by semantically uninformative tokens, leading to noisy credit assignment. To improve exploration efficiency, we introduce Rhythm Gating, a token-level weighting mechanism built on top of the GRPO branch. The key idea is to amplify policy updates only when a token simultaneously exhibits strong structural significance and demonstrates local improvement relative to the teacher. The resulting rhythm gating $M^{\mathrm{rhy}}_{i,t}$ selectively enhances exploration at critical reasoning positions while suppressing unnecessary perturbations elsewhere. This leads to more targeted exploration and more efficient policy refinement near the success boundary.
           </li>
           <li>
-            <strong>Difficulty Routing System.</strong>
+            <strong>Difficulty Routing.</strong>
             We introduce a difficulty routing system that dynamically adjusts the reinforcement learning weight according to problem mastery. Specifically, we maintain a smoothed pass-rate estimate for each problem using both historical and current training statistics. Based on the estimated pass rate, problems are categorized into easy, medium, and hard regions, and different values of $\gamma_i$ are assigned accordingly. This routing strategy concentrates reinforcement learning updates on medium-difficulty problems, where policy improvement is typically the most effective.
           </li>
           <li>
@@ -450,7 +447,7 @@
       <h2 class="title is-3 elegant-title">Mathematical Formulations</h2>
       <div class="content has-text-justified">
         <p>
-          The overall hybrid training objective minimizes a difficulty-routed combination of self-distillation on incorrect trajectories and rhythm-gated GRPO on correct trajectories:
+          The overall hybrid training objective minimizes a difficulty routing combination of self-distillation on incorrect trajectories and rhythm gating GRPO on correct trajectories:
         </p>
 
         <div class="formula-container">
@@ -466,11 +463,15 @@
           \gamma_i\,
           \mathbf{1}_{y_i\in\mathrm{correct}}
           \,\mathcal{J}_{\mathrm{GRPO}}^{\mathrm{rhythm}}(y_i)
-          }_{\text{Difficulty-Routed RL}}
+          }_{\text{Difficulty Routing RL}}
           \right]
           $$
         </div>
-
+        
+        <p class="has-text-grey" style="font-size: 0.95rem; font-style: italic;">
+          Where $\gamma_i$ is determined by difficulty routing.
+        </p>
+        
         <p class="has-text-grey" style="font-size: 0.95rem; font-style: italic;">
           For more detailed formulations, please refer to our upcoming paper.
         </p>
@@ -484,7 +485,7 @@
       <h2 class="title is-3 elegant-title">Experimental Results</h2>
       <div class="content has-text-justified">
         <p>
-          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across all domains, DRIFT showcases robust improvements compared to both paper baselines and strict in-house reproductions:
+          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT showcases robust improvements compared to both paper baselines and strict in-house reproductions:
         </p>
 
         <table class="table is-bordered is-striped is-hoverable is-fullwidth">
@@ -559,7 +560,7 @@
               <td>66.6</td>
               <td>80.8</td>
               <td>76.2</td>
-              <td>74.5</td>
+              <td>80.8</td>
               <td>-</td>
               <td>-</td>
             </tr>
@@ -600,11 +601,11 @@
   <section class="section" id="BibTeX" style="padding-top: 1rem;">
     <div class="container is-max-desktop content">
       <h2 class="title is-3 elegant-title">BibTeX</h2>
-      <pre><code>@misc{beike2026drsdonlineselfevolutionvia,
-      title         = {DRIFT: Difficulty-Routed self- Distillation with rhythm-gated exploration and success buFfer Training},
+      <pre><code>@misc{beike2026driftevolutionvia,
+      title         = {DRIFT: Difficulty Routing Self-Distillation with Rhythm Gating Exploration and Success Buffer Training},
       author        = {Beike Language and Intelligence},
       year          = {2026},
-      eprint        = {2602.12345},
+      eprint        = {2606.17123},
       archivePrefix = {arXiv},
       primaryClass  = {cs.CL},
       url           = {https://github.com/LianjiaTech/drift},
