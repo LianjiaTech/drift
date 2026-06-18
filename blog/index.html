@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DRIFT：Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,16 +20,14 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <!-- KaTeX for beautiful math formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
-  <!-- Bulma and Google Fonts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Montserrat:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <style>
     /* Custom style overrides to mimic ASTRA */
@@ -121,6 +118,38 @@
       font-family: 'Google Sans', sans-serif;
       color: #4a4a4a;
       margin-bottom: 1.5rem;
+    }
+
+    /* Highlight Key Results Banner */
+    .highlight-banner {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-metric {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      line-height: 1.1;
+    }
+
+    .highlight-label {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    .highlight-sublabel {
+      font-size: 0.85rem;
+      color: #6b7280;
     }
 
     /* Abstract Card Style */
@@ -268,13 +297,15 @@
       .drsd-subtitle {
         font-size: 0.5em;
       }
+      .highlight-metric {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Hero Header -->
   <section class="hero" style="margin: 0.1rem 0 !important; padding: 1.5rem 0.2rem !important;">
     <div class="hero-body">
       <div class="container is-max-desktop">
@@ -297,7 +328,6 @@
             </div>
 
             <div class="publication-links">
-              <!-- Github Link -->
               <span class="link-block">
                 <a href="https://github.com/LianjiaTech/drift" target="_blank" rel="noopener noreferrer" class="external-link custom-link">
                   <span class="icon">
@@ -307,7 +337,6 @@
                 </a>
               </span>
               <span class="link-separator">|</span>
-              <!-- Model Link -->
               <span class="link-block">
                 <a href="https://huggingface.co/linglingdan" target="_blank" rel="noopener noreferrer" class="external-link custom-link">
                   <span class="icon">
@@ -317,7 +346,6 @@
                 </a>
               </span>
               <span class="link-separator">|</span>
-              <!-- Paper Link -->
               <span class="link-block">
                 <span class="custom-link-disabled">
                   <span class="icon">
@@ -328,13 +356,29 @@
               </span>
             </div>
 
+            <div class="highlight-banner">
+              <div class="columns is-mobile is-vcentered">
+                <div class="column has-text-centered">
+                  <div class="highlight-metric">+30.0</div>
+                  <div class="highlight-label">avg gain over<br><span class="highlight-sublabel">Qwen3-8B base</span></div>
+                </div>
+                <div class="column has-text-centered" style="border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0;">
+                  <div class="highlight-metric">79.5</div>
+                  <div class="highlight-label">#1 on 5-benchmark<br><span class="highlight-sublabel">average (Avg@16)</span></div>
+                </div>
+                <div class="column has-text-centered">
+                  <div class="highlight-metric">79.2</div>
+                  <div class="highlight-label">#1 on Tool Use<br><span class="highlight-sublabel">(+8.0 vs SRPO)</span></div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Abstract Section -->
   <section class="section" style="padding-top: 0.5rem;">
     <div class="container is-max-desktop">
       <div class="abstract-box">
@@ -343,7 +387,7 @@
             <span class="abstract-lead">DRIFT</span> is an open-source online self-evolution policy optimization framework designed to empower large language models with continuous reasoning improvements without relying on external expert supervision.
           </p>
           <p>
-            By introducing dynamic Rhythm Gating, Difficulty Routing, Curriculum learning and Success Buffer, DRIFT builds an adaptive, structured exploration loop that yields stable and scalable policy improvement across diverse disciplines.
+            Through the synergy of adaptive task-difficulty scheduling, robust retention of optimal experiences, and token-level execution gating, DRIFT creates a structured self-improving loop that ensures reliable and continuous policy advancement across varied disciplines.
           </p>
         </div>
       </div>
@@ -351,12 +395,10 @@
     </div>
   </section>
 
-  <!-- Technical Overview with Graphs -->
   <section class="section" style="padding-top: 1rem;">
     <div class="container is-max-desktop">
       <h2 class="title is-3 elegant-title">Overview</h2>
 
-      <!-- Relocated Performance Graphs from Gallery to Overview Section -->
       <div class="columns is-centered mb-6">
         <div class="column is-full-width">
           <figure class="image mb-5">
@@ -377,25 +419,25 @@
 
       <div class="content has-text-justified">
         <p>
-          Enabling large language models to stably self-evolve without external expert supervision remains a central challenge in complex reasoning and scientific problem solving. Existing self-distillation and reinforcement learning methods often treat model-generated trajectories as static supervision, without explicitly modeling learning progress or dynamically adjusting training strategies. This can lead to over-optimization on easy problems, insufficient guidance on hard problems, and inadequate exploration on boundary cases. To address these issues, we propose DRIFT, an online self-evolutionary policy optimization framework for large language models.
+          As advanced reasoning and scientific discovery increasingly push the limits of available human gold-standards, the paradigm of language model optimization must pivot toward endogenous, autonomous scaling. Existing self-distillation and reinforcement learning methods predominantly treat model-generated trajectories as static training signals, failing to capture the model's evolving proficiency or adaptively recalibrate training dynamics. This insensitivity often triggers premature convergence on trivial tasks, severe gradient stagnation on intractable problems, and restricted exploration along critical cognitive boundaries. To transcend these limitations and achieve sustainable, closed-loop growth, we introduce DRIFT, an online self-evolutionary policy optimization framework for large language models.
         </p>
         <p>Our contributions are as follows:</p>
         <ol>
           <li>
             <strong>Rhythm Gating.</strong>
-            We design a structure-preserving exploration mechanism that encourages policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm Gating.
+            We design a structure-preserving exploration mechanism that orchestrates policy variation specifically near the success boundary. By modulating token-level generation dynamics, it fosters creative exploration while preventing the corruption of established, high-quality reasoning patterns.
           </li>
           <li>
-            <strong>Difficulty Routing.</strong>
-            We introduce a difficulty routing mechanism that uses historical pass rates as a stable estimate of the model's mastery level. This mechanism dynamically determines when to distill from past successful trajectories, when to explore new strategies, and when to reduce redundant training.
+            <strong>Dynamic Difficulty Routing.</strong>
+            We introduce a proficiency-aware routing mechanism that utilizes historical pass rates as a stable metric of the model's mastery level. This mechanism dynamically arbitrates when to distill historical successful trajectories, when to pioneer new search paths, and when to prune redundant optimization loops.
           </li>
           <li>
-            <strong>Two-stage curriculum learning.</strong>
-            We propose a two-stage curriculum learning strategy. In the first stage, an efficient SDPO warm-up rapidly elevates the model's capability to a stable plateau while accumulating a success buffer. In the second stage, SDPO is combined with GRPO to balance exploration, correction, and stable convergence, enabling continuous and stable performance improvement.
+            <strong>Two-Stage Evolutionary Curriculum.</strong>
+            We develop a phased curriculum learning paradigm. The first stage executes an efficient SDPO warm-up to rapidly scale model capabilities to a stable performance plateau; the second stage gracefully integrates SDPO with GRPO, balancing exploratory behaviors with policy correction to sustain long-term, stable convergence.
           </li>
           <li>
-            <strong>Success buffer.</strong>
-            DRIFT incorporates a historical success memory, namely the success buffer, to reuse high-quality trajectories. It further adopts a curriculum learning strategy to support smooth model evolution and uses Rhythm Gating to provide structured exploration rewards on boundary problems.
+            <strong>Experience Replay via Success Buffer.</strong>
+            DRIFT conceptualizes an endogenous success memory framework to store and systematically recycle high-quality reasoning trajectories. Working in tandem with our curriculum and gating strategies, it provides robust, structured exploration rewards on critical boundary cases.
           </li>
         </ol>
         <p>
@@ -405,7 +447,6 @@
     </div>
   </section>
 
-  <!-- Methodology -->
   <section class="section" style="padding-top: 1rem;">
     <div class="container is-max-desktop">
       <h2 class="title is-3 elegant-title">Methodology</h2>
@@ -420,28 +461,22 @@
       <div class="content has-text-justified">
         <ul>
           <li>
-            <strong>Rhythm Gating.</strong>
-            Standard GRPO applies the same trajectory-level advantage to all tokens, regardless of their importance within the reasoning process. As a result, exploration signals may be diluted by semantically uninformative tokens, leading to noisy credit assignment. To improve exploration efficiency, we introduce Rhythm Gating, a token-level weighting mechanism built on top of the GRPO branch. The key idea is to amplify policy updates only when a token simultaneously exhibits strong structural significance and demonstrates local improvement relative to the teacher. The resulting rhythm gating $M^{\mathrm{rhy}}_{i,t}$ selectively enhances exploration at critical reasoning positions while suppressing unnecessary perturbations elsewhere. This leads to more targeted exploration and more efficient policy refinement near the success boundary.
+            The DRIFT framework unifies on-policy self-distillation and online reinforcement learning into a cohesive, self-directed evolution loop governed by a programmatic two-stage curriculum.
           </li>
           <li>
-            <strong>Difficulty Routing.</strong>
-            We introduce a difficulty routing system that dynamically adjusts the reinforcement learning weight according to problem mastery. Specifically, we maintain a smoothed pass-rate estimate for each problem using both historical and current training statistics. Based on the estimated pass rate, problems are categorized into easy, medium, and hard regions, and different values of $\gamma_i$ are assigned accordingly. This routing strategy concentrates reinforcement learning updates on medium-difficulty problems, where policy improvement is typically the most effective.
+            In the first stage, the framework executes a sample-efficient warm-up using an Entropy-Driven Self-Distillation routine, where the model concurrently samples trajectories and distills from its own successful rollouts within the active training loop. Rather than blindly selecting the first valid answer, DRIFT preferentially distills from successful trajectories exhibiting the highest token-level sequence entropy, which maximizes initial exploratory diversity, prevents premature distribution collapse, and rapidly populates an active Success Buffer with high-quality reasoning pathways.
           </li>
           <li>
-            <strong>Two-stage curriculum learning.</strong>
-            DRIFT adopts a two-stage curriculum learning strategy. In the warm-up stage, we primarily employ SDPO, which is significantly more sample-efficient than GRPO and can rapidly improve the model's performance.
-            After the model reaches a reasonable performance level, we switch to a hybrid training stage that combines self-distillation and GRPO. Self-distillation provides corrective supervision for failed trajectories, whereas GRPO further improves successful trajectories through reward-driven optimization.
+            Once baseline performance plateaus, the framework transitions to the second stage—the self-evolution phase—which drives autonomous policy growth by dynamically segregating online rollouts based on verification correctness. Within this phase, failed rollouts bypass the reinforcement learning pipeline entirely to undergo immediate online distillation against high-reward, minimum-length successful trajectories fetched from the concurrent rollout group or retrieved from the Success Buffer, providing explicit, constructive feedback to correct broken reasoning chains in real time. Conversely, successful rollouts in this self-evolution phase are routed to an online Group Relative Policy Optimization (GRPO) branch to anchor and reinforce correct behaviors, which is tightly regulated by interconnected macroscopic and microscopic gating systems. 
           </li>
           <li>
-            <strong>Success Buffer.</strong>
-            To improve the utilization of successful trajectories, we introduce a Success Buffer that stores high-quality historical rollouts throughout training. Unlike standard on-policy optimization, where successful trajectories are discarded after a single update, our framework preserves them as reusable teacher signals for future self-distillation. During training, if no successful sibling trajectory is available within the current rollout group, a teacher trajectory is retrieved from the corresponding success buffer and used as the privileged feedback $f_i$. To ensure that the buffer evolves together with the policy, stored trajectories are continuously updated using a reward-based replacement strategy. This mechanism alleviates success-sample sparsity and provides more stable supervision across training iterations with negligible memory overhead.
+            At the macroscopic level, a Dynamic Difficulty Routing system maintains an exponentially smoothed pass rate for each problem to estimate the model's evolving proficiency, dynamically suppressing RL updates on trivial tasks with homogenous reward signals and intractable tasks prone to accidental guesses, thereby concentrating optimization intensity exclusively on the high-yielding medium-difficulty manifold. At the microscopic level, a Rhythm-Gated Structured Exploration mechanism maps sequence-level rewards to token-level adjustments via an Anchor Rhythm Gate. By tracking relative entropy dynamics and directional entropy collapses between the student and reference models, this gate amplifies policy updates only when a token simultaneously achieves a local improvement over the teacher and resides at a critical structural anchor point, such as a logical or causal junction. This dual-control architecture filters out syntactic background noise and ensures precise, bounded credit assignment near the success boundary, driving stable and continuous policy growth across diverse disciplines.
           </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Mathematical Formulation -->
   <section class="section" style="padding-top: 1rem;">
     <div class="container is-max-desktop">
       <h2 class="title is-3 elegant-title">Mathematical Formulations</h2>
@@ -479,13 +514,12 @@
     </div>
   </section>
 
-  <!-- Experimental Results -->
   <section class="section" style="padding-top: 1rem;">
     <div class="container is-max-desktop">
       <h2 class="title is-3 elegant-title">Experimental Results</h2>
       <div class="content has-text-justified">
         <p>
-          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT showcases robust improvements compared to both paper baselines and strict in-house reproductions:
+          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT showcases robust improvements:
         </p>
 
         <table class="table is-bordered is-striped is-hoverable is-fullwidth">
@@ -597,7 +631,6 @@
     </div>
   </section>
 
-  <!-- BibTeX Citation -->
   <section class="section" id="BibTeX" style="padding-top: 1rem;">
     <div class="container is-max-desktop content">
       <h2 class="title is-3 elegant-title">BibTeX</h2>
@@ -613,9 +646,7 @@
     </div>
   </section>
 
-  <!-- Footer block matching Nerfies licensing -->
   <footer class="footer">
-    <!-- Session Visit Counter Script -->
     <script language="JavaScript">
       var caution = false
       function setCookie(name, value, expires, path, domain, secure) {
@@ -668,7 +699,6 @@
     </div>
   </footer>
 
-  <!-- Tab switcher script -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Render LaTeX equations via KaTeX auto-render
