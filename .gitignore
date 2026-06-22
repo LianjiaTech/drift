@@ -1,0 +1,2 @@
+.DS_Store
+**/.DS_Store # 屏蔽所有子目录下的 .DS_Store
