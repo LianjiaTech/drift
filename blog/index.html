@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="DRIFT: Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DRIFT: Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Montserrat:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    /* Custom style overrides to mimic ASTRA */
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #fafafa;
+    }
+
+    .katex {
+      font-size: 1.1em;
+    }
+
+    .publication-title {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 800 !important;
+      margin-bottom: 1rem !important;
+      line-height: 1.1 !important;
+    }
+
+    .drsd-title {
+      font-size: 1.3em;
+      letter-spacing: 0.12rem;
+      color: #2c3e50;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 0.2rem;
+    }
+
+    .drsd-subtitle {
+      font-family: 'Lora', serif;
+      font-size: 0.6em;
+      font-weight: 400;
+      font-style: italic;
+      color: #5a6c7d;
+      letter-spacing: 0.01rem;
+      display: block;
+      margin-top: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .drsd-initial {
+      font-weight: 700;
+      text-decoration: underline;
+      color: #2c3e50;
+    }
+
+    .link-separator {
+      margin: 0 0.5rem;
+      color: #b5b5b5;
+      font-weight: 300;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .custom-link {
+      color: #4a4a4a;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+    }
+
+    .custom-link:hover {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+
+    .custom-link-disabled {
+      color: #b5b5b5;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      cursor: default;
+    }
+
+    .custom-link-disabled .icon {
+      margin-right: 0.2rem;
+    }
+
+    .custom-link .icon {
+      margin-right: 0.2rem;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+      color: #4a4a4a;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Highlight Key Results Banner */
+    .highlight-banner {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-metric {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      line-height: 1.1;
+    }
+
+    .highlight-label {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    .highlight-sublabel {
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* Abstract Card Style */
+    .abstract-box {
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      border-radius: 10px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-left: 5px solid #2c3e50;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .abstract-text {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      line-height: 1.7;
+    }
+
+    .abstract-lead {
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    /* Formula Container Styling */
+    .formula-container {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin: 1.5rem auto;
+      width: fit-content;
+      max-width: 100%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      overflow-x: auto;
+    }
+
+    .formula-container .katex {
+      font-size: 1.45em;
+    }
+
+    /* Gallery & Tab styling */
+    .gallery-stage {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-item {
+      display: none;
+    }
+
+    .gallery-item.is-active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .elegant-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: #2c3e50;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem !important;
+    }
+
+    /* Code Block (For actual code inside gallery) */
+    .code-snippet {
+      font-family: Consolas, "Courier New", monospace;
+      background-color: #1e293b;
+      color: #f8fafc;
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border-left: 4px solid #3b82f6;
+    }
+
+    /* Light Callout Box (Optimized for academic quotes/important paragraphs) */
+    .callout-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #3b82f6;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .callout-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: #0f172a;
+      display: inline;
+      margin-right: 0.3rem;
+    }
+
+    /* Custom Bulma-like Table Tuning */
+    .table {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+    .table th {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      vertical-align: middle;
+    }
+    .table td {
+      vertical-align: middle;
+    }
+
+    .highlight-row {
+      background-color: #f0fdf4 !important;
+    }
+
+    .highlight-bold {
+      font-weight: bold;
+    }
+
+    .highlight-underline {
+      text-decoration: underline;
+    }
+
+    .figure-caption {
+      color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+      .drsd-subtitle {
+        font-size: 0.5em;
+      }
+      .highlight-metric {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero" style="margin: 0.1rem 0 !important; padding: 1.5rem 0.2rem !important;">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="drsd-title">
+                <img src="logo.png" alt="DRIFT Logo" width="56" height="56" style="vertical-align: middle; margin-right: 8px;" />
+                DRIFT
+              </span><br>
+              <span class="drsd-subtitle">
+                <span class="drsd-initial">D</span>ifficulty <span class="drsd-initial">R</span>outing self-d<span class="drsd-initial">I</span>stillation with rhythm gating exploration and success bu<span class="drsd-initial">F</span>fer <span class="drsd-initial">T</span>raining
+              </span>
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">June 22, 2026</span>
+              <span class="author-block">&nbsp;—&nbsp;</span>
+              <span class="author-block">Beike Language and Intelligence</span>
+            </div>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://github.com/LianjiaTech/drift" target="_blank" rel="noopener noreferrer" class="external-link custom-link">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Github</span>
+                </a>
+              </span>
+              <span class="link-separator">|</span>
+              <span class="link-block">
+                <a href="https://huggingface.co/linglingdan" target="_blank" rel="noopener noreferrer" class="external-link custom-link">
+                  <span class="icon">
+                    <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="22" height="22" style="vertical-align: middle;" />
+                  </span>
+                  <span>HF Model</span>
+                </a>
+              </span>
+              <span class="link-separator">|</span>
+              <span class="link-block">
+                <span class="custom-link-disabled">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf" style="color: #b5b5b5;"></i>
+                  </span>
+                  <span>Paper (coming soon)</span>
+                </span>
+              </span>
+            </div>
+
+            <div class="highlight-banner">
+              <div class="columns is-mobile is-vcentered">
+                <div class="column has-text-centered">
+                  <div class="highlight-metric">79.5</div>
+                  <div class="highlight-label">#1 on 5-benchmark<br><span class="highlight-sublabel">average (Avg@16)</span></div>
+                </div>
+                <div class="column has-text-centered" style="border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0;">
+                  <div class="highlight-metric">79.2</div>
+                  <div class="highlight-label">#1 on Tool Use<br><span class="highlight-sublabel">(+8.0 vs SRPO)</span></div>
+                </div>
+                <div class="column has-text-centered">
+                  <div class="highlight-metric">+30.0</div>
+                  <div class="highlight-label">avg gain over<br><span class="highlight-sublabel">Qwen3-8B base</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0.5rem;">
+    <div class="container is-max-desktop">
+      <div class="abstract-box">
+        <div class="abstract-text content has-text-justified">
+          <p>
+            <strong>DRIFT</strong> is an open-source online self-evolution policy optimization framework designed to enable continuous reasoning improvements in large language models without relying on external expert supervision.
+          </p>
+          <p>
+            Through the coordinated integration of dynamic <strong>difficulty routing</strong>, token-level <strong>rhythm gating</strong>, two-stage <strong>curriculum learning</strong> and robust <strong>experience replay</strong>, DRIFT creates a structured self-improving loop that ensures reliable and sustained policy improvement across diverse domains.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 elegant-title">Overview</h2>
+
+      <div class="columns is-centered mb-6">
+        <div class="column is-full-width">
+          <figure class="image mb-6">
+            <img src="drift_performance.png" alt="DRIFT Multi-Disciplinary Performance" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+          </figure>
+
+          <figure class="image mb-5">
+            <img src="drift_convergence.png" alt="DRIFT Online Self-Evolution Convergence" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+          </figure>
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <p>
+          Achieving stable self-evolution in large language models without external expert supervision remains a central challenge in complex reasoning and scientific problem solving. Existing self-distillation and reinforcement learning methods often suffer from imprecise credit assignment, where coarse trajectory-level signals fail to distinguish the relative importance of different reasoning steps. Moreover, they typically treat model-generated trajectories as static supervision, without explicitly modeling learning progress or dynamically adjusting training strategies. As a result, they may over-optimize easy problems, provide insufficient guidance on hard problems, and inadequately explore boundary cases. To address these issues, we propose <strong>DRIFT</strong>, an online self-evolutionary framework for large language models post-training.
+        </p>
+        <p>Our contributions are as follows:</p>
+        <ol>
+          <li>
+            <strong>Dynamic Difficulty Routing.</strong>
+            Historical pass rates are used as a stable estimate of the model's mastery level, enabling dynamic decisions on when to distill from past successful trajectories, when to explore new strategies, and when to reduce redundant training.
+          </li>
+          <li>
+            <strong>Rhythm Gating Exploration.</strong>
+            A structure-preserving exploration mechanism is introduced to encourage policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm Gating.
+          </li>
+          <li>
+            <strong>Two-Stage Curriculum Learning.</strong>
+            A two-stage curriculum strategy is designed to align training behaviors with different phases of model learning. The first stage focuses on rapid capability growth and success buffer accumulation, allowing the model to reach a stable performance plateau efficiently. The second stage shifts toward balanced exploration, correction, and convergence, enabling continuous and stable performance improvement.
+          </li>
+          <li>
+            <strong>Experience Replay via Success Buffer.</strong>
+            DRIFT incorporates a historical success buffer to reuse high-quality trajectories. It further adopts a curriculum learning strategy to support smooth model evolution and uses Rhythm Gating to provide structured exploration rewards on boundary problems.
+          </li>
+        </ol>
+        <p>
+          We evaluate DRIFT on diverse task categories, including biology, chemistry, materials science, physics, and tool use. Experimental results show that DRIFT significantly outperforms reproduced SDPO and GRPO baselines, and further improves upon recent methods such as SRPO, demonstrating stronger training stability and better cross-domain generalization.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 elegant-title">Methodology</h2>
+
+      <figure class="image mb-5">
+        <img src="drift_pipeline_new.png" alt="DRIFT Overall Training Pipeline" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+        <figcaption class="mt-2 figure-caption">
+          Overall DRIFT training pipeline.
+        </figcaption>
+      </figure>
+
+      <div class="content has-text-justified">
+        <p>
+          <strong>Training Framework for DRIFT.</strong>
+          We integrate on-policy self-distillation and online reinforcement learning into a coherent self-evolution loop guided by a two-stage curriculum.
+        </p>
+        <ul>
+          <li>
+            <strong>Warmup via Entropy-Driven Self-Distillation.</strong>
+            DRIFT uses entropy-driven self-distillation for efficient warmup. During this stage, the model continuously samples trajectories within the online training loop and performs self-distillation on its own successful rollouts. DRIFT prioritizes successful trajectories with the highest token-level sequence entropy as distillation targets. This approach rapidly enhances model capabilities with fewer rollouts while maintaining the diversity of initial exploration, mitigating premature distribution collapse, and quickly accumulating high-quality reasoning paths for the success buffer.
+          </li>
+          <li>
+            <strong>Self-Evolution via Routing.</strong>
+            Once the baseline performance reaches a stable plateau, DRIFT transitions into the second stage, namely the self-evolution stage. In this stage, online rollouts are dynamically routed according to their estimated pass-rate, allowing the framework to assign different training signals to problems at different difficulty levels. Failed rollouts bypass reinforcement learning updates and are instead corrected through online distillation from high-quality successful trajectories, either sampled from the parallel rollout group or retrieved from the success buffer. Successful rollouts, on the other hand, are routed to the online GRPO branch, where correct behaviors are further reinforced. This self-evolution process is jointly regulated by macro-level difficulty routing and micro-level token gating, enabling a balanced interaction between correction, exploration, and stable policy improvement.
+            <ul>
+              <li>
+                <strong>Macro-Level Difficulty Routing.</strong>
+                At the macro-level, the dynamic difficulty routing system maintains an exponentially smoothed pass-rate for each problem to estimate the model's evolving mastery. It dynamically downweights the contribution of GRPO updates on easy tasks with homogeneous reward signals and on hard-to-solve tasks that are prone to accidental guessing, thereby focusing on the high-return medium-difficulty manifold.
+              </li>
+              <li>
+                <strong>Micro-Level Rhythm Gating for Structured Exploration.</strong>
+                At the micro-level, DRIFT introduces a structured rhythm gating exploration mechanism that maps sequence-level rewards into token-level modulation through an Anchor Rhythm Gate. By tracking relative entropy dynamics between the student and reference models, as well as directional entropy collapse, this gate amplifies policy updates only when a token both exhibits local improvement over the teacher model and corresponds to a critical structural anchor, such as a logical or causal node.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 elegant-title">Mathematical Formulations</h2>
+      <div class="content has-text-justified">
+        <p>
+          The overall hybrid training objective minimizes a difficulty routing combination of self-distillation on incorrect trajectories and GRPO with Rhythm Gating on correct trajectories:
+        </p>
+
+        <div class="formula-container">
+          $$
+          \min\quad \mathcal{L}(\theta):=
+          \mathbb{E}_{y_i\sim\pi_{\theta}(\cdot\mid x)}
+          \left[
+          \underbrace{
+          \mathbf{1}_{y_i\in\mathrm{incorrect}}
+          \,\mathcal{L}_{\mathrm{OPD}}(y_i,f_i)
+          }_{\text{Self-Distillation}}-
+          \underbrace{
+          \gamma_i\,
+          \mathbf{1}_{y_i\in\mathrm{correct}}
+          \,\mathcal{J}_{\mathrm{GRPO}}^{\mathrm{rhythm}}(y_i)
+          }_{\text{Difficulty Routing RL}}
+          \right]
+          $$
+        </div>
+        
+        <p>
+          where $\gamma_i$ is determined by difficulty routing.
+        </p>
+        
+        <p class="has-text-grey" style="font-size: 0.95rem; font-style: italic;">
+          Further details on the theoretical motivation, underlying insights, and mathematical demonstration will be provided in our upcoming paper.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 elegant-title">Experimental Results</h2>
+      <div class="content has-text-justified">
+        <p>
+          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT achieves consistent improvements:
+        </p>
+
+        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Method / Model</th>
+              <th>Biology</th>
+              <th>Chemistry</th>
+              <th>Materials</th>
+              <th>Physics</th>
+              <th>Tool Use</th>
+              <th>Average</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Qwen3-8B</td>
+              <td>30.8</td>
+              <td>41.2</td>
+              <td>58.9</td>
+              <td>59.2</td>
+              <td>57.5</td>
+              <td>49.5</td>
+            </tr>
+            <tr>
+              <td>SDPO (Paper)</td>
+              <td>56.8</td>
+              <td>80.9</td>
+              <td>78.4</td>
+              <td>75.6</td>
+              <td>68.5</td>
+              <td>72.0</td>
+            </tr>
+            <tr>
+              <td>SDPO (Reproduced)</td>
+              <td>64.8</td>
+              <td>78.9</td>
+              <td>76.1</td>
+              <td>72.7</td>
+              <td>67.7</td>
+              <td>72.0</td>
+            </tr>
+            <tr>
+              <td>GRPO (Paper)</td>
+              <td>59.9</td>
+              <td>74.5</td>
+              <td>77.1</td>
+              <td>72.7</td>
+              <td>65.7</td>
+              <td>70.0</td>
+            </tr>
+            <tr>
+              <td>GRPO (Reproduced)</td>
+              <td>47.4</td>
+              <td>65.6</td>
+              <td>73.5</td>
+              <td>60.6</td>
+              <td>67.7</td>
+              <td>63.0</td>
+            </tr>
+            <tr>
+              <td>SRPO (Paper)</td>
+              <td class="highlight-underline">72.8</td>
+              <td class="highlight-bold">83.0</td>
+              <td class="highlight-bold">81.5</td>
+              <td>78.4</td>
+              <td class="highlight-underline">71.2</td>
+              <td class="highlight-underline">77.38</td>
+            </tr>
+            <tr>
+              <td>DistIL (Paper)</td>
+              <td>66.6</td>
+              <td>80.8</td>
+              <td>76.2</td>
+              <td>80.8</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>SC-SDPO (Paper)</td>
+              <td>65.4</td>
+              <td>80.6</td>
+              <td>79.3</td>
+              <td class="highlight-bold">81.6</td>
+              <td>67.3</td>
+              <td>74.8</td>
+            </tr>
+            <tr>
+              <td>PGPO (Paper)</td>
+              <td>61.3</td>
+              <td>77.6</td>
+              <td>78.7</td>
+              <td>77.6</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>DRIFT (Ours)</td>
+              <td class="highlight-bold">74.4</td>
+              <td class="highlight-underline">82.0</td>
+              <td class="highlight-underline">81.4</td>
+              <td class="highlight-underline">80.5</td>
+              <td class="highlight-bold">79.2</td>
+              <td class="highlight-bold">79.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX" style="padding-top: 1rem;">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 elegant-title">BibTeX</h2>
+      <pre><code>@misc{beike2026drift,
+      title         = {DRIFT: Difficulty Routing Self-Distillation with Rhythm Gating Exploration and Success Buffer Training},
+      author        = {Beike Language and Intelligence},
+      year          = {2026},
+      eprint        = {2606.17123},
+      archivePrefix = {arXiv},
+      primaryClass  = {cs.CL},
+      url           = {https://github.com/LianjiaTech/drift},
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <script language="JavaScript">
+      var caution = false
+      function setCookie(name, value, expires, path, domain, secure) {
+        var curCookie = name + "=" + escape(value) +
+          ((expires) ? "; expires=" + expires.toGMTString() : "") +
+          ((path) ? "; path=" + path : "") +
+          ((domain) ? "; domain=" + domain : "") +
+          ((secure) ? "; secure" : "")
+        if (!caution || (name + "=" + escape(value)).length <= 4000)
+          document.cookie = curCookie
+        else
+          if (confirm("Cookie exceeds 4KB and will be cut!"))
+            document.cookie = curCookie
+      }
+
+      function getCookie(name) {
+        var prefix = name + "="
+        var cookieStartIndex = document.cookie.indexOf(prefix)
+        if (cookieStartIndex == -1)
+          return null
+        var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+        if (cookieEndIndex == -1)
+          cookieEndIndex = document.cookie.length
+        return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+      }
+
+      var now = new Date()
+      now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000)
+      var visits = getCookie("drsd-counter")
+      if (!visits)
+        visits = 1
+      else
+        visits = parseInt(visits) + 1
+      setCookie("drsd-counter", visits, now)
+    </script>
+
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Website template built on the open-source <a href="https://nerfies.github.io">Nerfies</a> project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Render LaTeX equations via KaTeX auto-render
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
