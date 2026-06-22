@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="DRIFT：Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training">
+  <meta name="description" content="DRIFT: Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DRIFT：Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training</title>
+  <title>DRIFT: Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
@@ -314,7 +314,7 @@
             <h1 class="title is-1 publication-title">
               <span class="drsd-title">
                 <img src="logo.png" alt="DRIFT Logo" width="56" height="56" style="vertical-align: middle; margin-right: 8px;" />
-                DRIFT:
+                DRIFT
               </span><br>
               <span class="drsd-subtitle">
                 <span class="drsd-initial">D</span>ifficulty <span class="drsd-initial">R</span>outing self-d<span class="drsd-initial">I</span>stillation with rhythm gating exploration and success bu<span class="drsd-initial">F</span>fer <span class="drsd-initial">T</span>raining
@@ -384,10 +384,10 @@
       <div class="abstract-box">
         <div class="abstract-text content has-text-justified">
           <p>
-            <strong>DRIFT</strong> is an open-source online self-evolution policy optimization framework designed to empower large language models with continuous reasoning improvements without relying on external expert supervision.
+            <strong>DRIFT</strong> is an open-source online self-evolution policy optimization framework designed to enable continuous reasoning improvements in large language models without relying on external expert supervision.
           </p>
           <p>
-            Through the coordinated integration of token-level <strong>rhythm gating</strong>, dynamic <strong>difficulty routing</strong>, two-stage <strong>curriculum learning</strong> and robust <strong>experience replay</strong>, DRIFT creates a structured self-improving loop that ensures reliable and sustained policy improvement across diverse domains.
+            Through the coordinated integration of dynamic <strong>difficulty routing</strong>, token-level <strong>rhythm gating</strong>, two-stage <strong>curriculum learning</strong> and robust <strong>experience replay</strong>, DRIFT creates a structured self-improving loop that ensures reliable and sustained policy improvement across diverse domains.
           </p>
         </div>
       </div>
@@ -401,39 +401,33 @@
 
       <div class="columns is-centered mb-6">
         <div class="column is-full-width">
-          <figure class="image mb-5">
+          <figure class="image mb-6">
             <img src="drift_performance.png" alt="DRIFT Multi-Disciplinary Performance" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
-            <figcaption class="mt-2 figure-caption">
-              Multi-disciplinary performance across domains.
-            </figcaption>
           </figure>
-          
+
           <figure class="image mb-5">
             <img src="drift_convergence.png" alt="DRIFT Online Self-Evolution Convergence" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
-            <figcaption class="mt-2 figure-caption">
-              Comparative evaluation of tool use performance.
-            </figcaption>
           </figure>
         </div>
       </div>
 
       <div class="content has-text-justified">
         <p>
-          Enabling large language models to stably self-evolve without external expert supervision remains a central challenge in complex reasoning and scientific problem solving. Existing self-distillation and reinforcement learning methods often suffer from imprecise credit assignment, where coarse trajectory-level signals fail to distinguish the relative importance of different reasoning steps. Moreover, they typically treat model-generated trajectories as static supervision, without explicitly modeling learning progress or dynamically adjusting training strategies. As a result, they may over-optimize easy problems, provide insufficient guidance on hard problems, and inadequately explore boundary cases. To address these issues, we propose <strong>DRIFT</strong>, an online self-evolutionary framework for large language models post-training.
+          Achieving stable self-evolution in large language models without external expert supervision remains a central challenge in complex reasoning and scientific problem solving. Existing self-distillation and reinforcement learning methods often suffer from imprecise credit assignment, where coarse trajectory-level signals fail to distinguish the relative importance of different reasoning steps. Moreover, they typically treat model-generated trajectories as static supervision, without explicitly modeling learning progress or dynamically adjusting training strategies. As a result, they may over-optimize easy problems, provide insufficient guidance on hard problems, and inadequately explore boundary cases. To address these issues, we propose <strong>DRIFT</strong>, an online self-evolutionary framework for large language models post-training.
         </p>
         <p>Our contributions are as follows:</p>
         <ol>
-          <li>
-            <strong>Rhythm Gating.</strong>
-            A structure-preserving exploration mechanism is introduced to encourage policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm Gating.
-          </li>
           <li>
             <strong>Dynamic Difficulty Routing.</strong>
             Historical pass rates are used as a stable estimate of the model's mastery level, enabling dynamic decisions on when to distill from past successful trajectories, when to explore new strategies, and when to reduce redundant training.
           </li>
           <li>
+            <strong>Rhythm Gating Exploration.</strong>
+            A structure-preserving exploration mechanism is introduced to encourage policy variation near the success boundary, while preserving useful reasoning patterns through token-level Rhythm Gating.
+          </li>
+          <li>
             <strong>Two-Stage Curriculum Learning.</strong>
-            A two-stage curriculum strategy is designed to align training behaviors with different phases of model learning. The first stage focuses on rapid capability growth and success memory accumulation, allowing the model to reach a stable performance plateau efficiently. The second stage shifts toward balanced exploration, correction, and convergence, enabling continuous and stable performance improvement.
+            A two-stage curriculum strategy is designed to align training behaviors with different phases of model learning. The first stage focuses on rapid capability growth and success buffer accumulation, allowing the model to reach a stable performance plateau efficiently. The second stage shifts toward balanced exploration, correction, and convergence, enabling continuous and stable performance improvement.
           </li>
           <li>
             <strong>Experience Replay via Success Buffer.</strong>
@@ -461,24 +455,24 @@
       <div class="content has-text-justified">
         <p>
           <strong>Training Framework for DRIFT.</strong>
-          We unify on-policy self-distillation and online reinforcement learning into a coherent self-evolution loop guided by a two-stage curriculum.
+          We integrate on-policy self-distillation and online reinforcement learning into a coherent self-evolution loop guided by a two-stage curriculum.
         </p>
         <ul>
           <li>
-            <strong>Warmup via Entropy-Driven SDPO.</strong>
-            DRIFT employs an entropy-driven self-distillation algorithm to execute an efficient warmup process. During this stage, the model continuously samples trajectories within the online training loop and performs self-distillation on its own successful rollouts. DRIFT prioritizes successful trajectories with the highest token-level sequence entropy as distillation targets. This approach rapidly enhances model capabilities with fewer rollouts while maintaining the diversity of initial exploration, mitigating premature distribution collapse, and quickly accumulating high-quality reasoning paths for the Success Buffer.
+            <strong>Warmup via Entropy-Driven Self-Distillation.</strong>
+            DRIFT uses entropy-driven self-distillation for efficient warmup. During this stage, the model continuously samples trajectories within the online training loop and performs self-distillation on its own successful rollouts. DRIFT prioritizes successful trajectories with the highest token-level sequence entropy as distillation targets. This approach rapidly enhances model capabilities with fewer rollouts while maintaining the diversity of initial exploration, mitigating premature distribution collapse, and quickly accumulating high-quality reasoning paths for the success buffer.
           </li>
           <li>
             <strong>Self-Evolution via Routing.</strong>
-            Once the baseline performance reaches a stable plateau, DRIFT transitions into the second stage, namely the self-evolution stage. In this stage, online rollouts are dynamically routed according to their estimated pass-rate, allowing the framework to assign different training signals to problems at different difficulty levels. Failed rollouts bypass reinforcement learning updates and are instead corrected through online distillation from high-quality successful trajectories, either sampled from the parallel rollout group or retrieved from the Success Buffer. Successful rollouts, on the other hand, are routed to the online GRPO branch, where correct behaviors are further reinforced. This self-evolution process is jointly regulated by macro-level difficulty routing and micro-level token gating, enabling a balanced interaction between correction, exploration, and stable policy improvement.
+            Once the baseline performance reaches a stable plateau, DRIFT transitions into the second stage, namely the self-evolution stage. In this stage, online rollouts are dynamically routed according to their estimated pass-rate, allowing the framework to assign different training signals to problems at different difficulty levels. Failed rollouts bypass reinforcement learning updates and are instead corrected through online distillation from high-quality successful trajectories, either sampled from the parallel rollout group or retrieved from the success buffer. Successful rollouts, on the other hand, are routed to the online GRPO branch, where correct behaviors are further reinforced. This self-evolution process is jointly regulated by macro-level difficulty routing and micro-level token gating, enabling a balanced interaction between correction, exploration, and stable policy improvement.
             <ul>
               <li>
                 <strong>Macro-Level Difficulty Routing.</strong>
                 At the macro-level, the dynamic difficulty routing system maintains an exponentially smoothed pass-rate for each problem to estimate the model's evolving mastery. It dynamically downweights the contribution of GRPO updates on easy tasks with homogeneous reward signals and on hard-to-solve tasks that are prone to accidental guessing, thereby focusing on the high-return medium-difficulty manifold.
               </li>
               <li>
-                <strong>Micro-Level Rhythm-Gating Structured Exploration.</strong>
-                At the micro-level, DRIFT introduces a structured rhythm-gating exploration mechanism that maps sequence-level rewards into token-level modulation through an Anchor Rhythm Gate. By tracking relative entropy dynamics between the student and reference models, as well as directional entropy collapse, this gate amplifies policy updates only when a token both exhibits local improvement over the teacher model and corresponds to a critical structural anchor, such as a logical or causal node.
+                <strong>Micro-Level Rhythm Gating for Structured Exploration.</strong>
+                At the micro-level, DRIFT introduces a structured rhythm gating exploration mechanism that maps sequence-level rewards into token-level modulation through an Anchor Rhythm Gate. By tracking relative entropy dynamics between the student and reference models, as well as directional entropy collapse, this gate amplifies policy updates only when a token both exhibits local improvement over the teacher model and corresponds to a critical structural anchor, such as a logical or causal node.
               </li>
             </ul>
           </li>
@@ -492,7 +486,7 @@
       <h2 class="title is-3 elegant-title">Mathematical Formulations</h2>
       <div class="content has-text-justified">
         <p>
-          The overall hybrid training objective minimizes a difficulty routing combination of self-distillation on incorrect trajectories and rhythm gating GRPO on correct trajectories:
+          The overall hybrid training objective minimizes a difficulty routing combination of self-distillation on incorrect trajectories and GRPO with Rhythm Gating on correct trajectories:
         </p>
 
         <div class="formula-container">
@@ -502,7 +496,7 @@
           \left[
           \underbrace{
           \mathbf{1}_{y_i\in\mathrm{incorrect}}
-          \,\mathcal{L}_{\mathrm{SDPO}}(y_i,f_i)
+          \,\mathcal{L}_{\mathrm{OPD}}(y_i,f_i)
           }_{\text{Self-Distillation}}-
           \underbrace{
           \gamma_i\,
@@ -518,7 +512,7 @@
         </p>
         
         <p class="has-text-grey" style="font-size: 0.95rem; font-style: italic;">
-          For more detailed formulations, please refer to our upcoming paper.
+          Further details on the theoretical motivation, underlying insights, and mathematical demonstration will be provided in our upcoming paper.
         </p>
       </div>
     </div>
@@ -529,7 +523,7 @@
       <h2 class="title is-3 elegant-title">Experimental Results</h2>
       <div class="content has-text-justified">
         <p>
-          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT showcases robust improvements:
+          We evaluated DRIFT on five prominent, multi-turn reasoning and academic benchmarks. Across nearly all domains, DRIFT achieves consistent improvements:
         </p>
 
         <table class="table is-bordered is-striped is-hoverable is-fullwidth">
@@ -644,7 +638,7 @@
   <section class="section" id="BibTeX" style="padding-top: 1rem;">
     <div class="container is-max-desktop content">
       <h2 class="title is-3 elegant-title">BibTeX</h2>
-      <pre><code>@misc{beike2026driftevolutionvia,
+      <pre><code>@misc{beike2026drift,
       title         = {DRIFT: Difficulty Routing Self-Distillation with Rhythm Gating Exploration and Success Buffer Training},
       author        = {Beike Language and Intelligence},
       year          = {2026},
