@@ -1,6 +1,7 @@
 import math
 import torch
 
+
 # ===== 全局状态 =====
 # router_state: dict[uid, {"success": float, "failure": float, "last_step": float}]
 router_state: dict = {}

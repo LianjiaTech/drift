@@ -4,9 +4,9 @@
   <a href="README.md">English</a> | <b>简体中文</b>
 </p>
 <p align="center">
-  <a href="https://lianjiatech.github.io/drift/"><img src="https://img.shields.io/badge/Blog-DRIFT-green" alt="Blog"></a>
+  <a href="https://lianjiatech.github.io/drift/blog"><img src="https://img.shields.io/badge/Blog-DRIFT-green" alt="Blog"></a>
   <a href="https://arxiv.org/abs/2606.30345"><img src="https://img.shields.io/badge/arXiv-2606.30345-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow" alt="Hugging Face"></a>
+  <a href="https://huggingface.co/linglingdan"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow" alt="Hugging Face"></a>
 </p>
 
 DRIFT 是由 Beike Language and Intelligence 团队提出的一个开源在线自演化策略优化框架。该框架旨在使大型语言模型在不依赖外部专家监督的情况下，实现复杂推理和科学问题求解能力的持续提升。

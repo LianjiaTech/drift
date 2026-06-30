@@ -1,5 +1,6 @@
 import torch
 
+
 def compute_rhythm_gate(rhythm_token_weights: "T[B,T]",   # 来自 compute_temporal_rhythm_multipliers
                         response_mask: "T[B,T]",
                         multiplier_max: float,            # cfg.rhythm_aux_multiplier_max

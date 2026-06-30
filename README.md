@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <a href="https://lianjiatech.github.io/drift/"><img src="https://img.shields.io/badge/Blog-DRIFT-green" alt="Blog"></a>
+  <a href="https://lianjiatech.github.io/drift/blog/"><img src="https://img.shields.io/badge/Blog-DRIFT-green" alt="Blog"></a>
   <a href="https://arxiv.org/abs/2606.30345"><img src="https://img.shields.io/badge/arXiv-2606.30345-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow" alt="Hugging Face"></a>
+  <a href="https://huggingface.co/linglingdan"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow" alt="Hugging Face"></a>
 </p>
 
 DRIFT is an open-source online self-evolving policy optimization framework proposed by the Beike Language and Intelligence team. This framework is designed to enable large language models to continuously improve their complex reasoning and scientific problem-solving capabilities without relying on external expert supervision.

@@ -1,6 +1,7 @@
 import math
 from typing import Optional
 
+
 # ===== 全局状态 =====
 # buffer: dict[uid, list[entry]]
 # entry = {"response_text": str, "score": float, "global_step": int, "response_length": int}
