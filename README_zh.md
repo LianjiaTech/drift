@@ -127,3 +127,18 @@ cd DRIFT-main
   * **机制说明**：展示了样本难度的自适应路由控制。通过平滑维护每个问题的历史通过率（EMA Pass Rate），动态评估模型当前的认知边界。根据掌握程度，将困难样本路由至自蒸馏纠错通道，边界样本路由至强化探索通道，
 * **`rhythm_rebellious_pseudocode.py` (Rhythm-Gated Rebellious Bonus 机制)**
   * **机制说明**：展示了 Token 级别的结构化探索增强。结合学生与教师模型在推理路径上的局部条件熵塌缩（Entropy Collapse）差异，定位关键的逻辑转折与因果锚点（Anchor Rhythm）。仅当学生在这些结构性位置上局部超越（Rebellious Bonus）教师时，才选择性放大策略更新梯度，从而在控制噪声的同时实现高精度的信用分配。
+
+---
+
+
+## 📄 引用
+
+如果您在研究或应用中使用了 DRIFT 框架，请考虑引用我们的论文：
+
+```bibtex
+@article{luo2026drift,
+  title={DRIFT: Difficulty Routing Self-DIstillation with Rhythm-Gated Exploration and Success BuFfer Training},
+  author={Luo, Haisen and Liu, Yiwei and Wang, Haoning and Liu, Dan and Yin, Junxi and Wang, Haotian and Zhang, Lei and Tian, Xiaoyu and Chen, Shuaiting and Song, Yuansheng and Guo, Baoyan and Yan, Xiongfei and Yang, Bolan and Liu, Chengwei Celur and Cui, Ming and Chen, Jiong},
+  journal={arXiv preprint arXiv:2606.30345},
+  year={2026}
+}

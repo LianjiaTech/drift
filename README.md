@@ -128,3 +128,15 @@ In the root directory of the `drift` repository, we provide independent Python p
   * **Description**: Demonstrates adaptive routing based on problem difficulty. By tracking a smoothed historical pass rate (EMA Pass Rate) for each problem, the system dynamically estimates the model's current cognitive boundary. Based on the mastery level, difficult samples are routed to the self-distillation error correction channel, while boundary samples are routed to the reinforcement exploration channel.
 * **`rhythm_rebellious_pseudocode.py` (Rhythm-Gated Rebellious Bonus Mechanism)**
   * **Description**: Demonstrates token-level structured exploration enhancement. By analyzing the differences in local conditional entropy collapse of both student and teacher models along the reasoning path, it localizes critical logical transitions and causal decision anchors (Anchor Rhythm). It selectively amplifies policy gradients only when the student locally outperforms the teacher (Rebellious Bonus) at these structural positions, ensuring fine-grained credit assignment while effectively filtering background noise.
+
+  ## 📄 Citation
+
+If you find DRIFT helpful in your research or applications, please consider citing our paper:
+
+```bibtex
+@article{luo2026drift,
+  title={DRIFT: Difficulty Routing Self-DIstillation with Rhythm-Gated Exploration and Success BuFfer Training},
+  author={Luo, Haisen and Liu, Yiwei and Wang, Haoning and Liu, Dan and Yin, Junxi and Wang, Haotian and Zhang, Lei and Tian, Xiaoyu and Chen, Shuaiting and Song, Yuansheng and Guo, Baoyan and Yan, Xiongfei and Yang, Bolan and Liu, Chengwei Celur and Cui, Ming and Chen, Jiong},
+  journal={arXiv preprint arXiv:2606.30345},
+  year={2026}
+}
