@@ -1,36 +1,62 @@
-DRIFT: Difficulty Routing self-dIstillation with rhythm gating exploration and success buFfer Training
-Hugging Face GitHub Repo
+# DRIFT: Difficulty Routing Self-DIstillation with Rhythm-Gated Exploration and Success BuFfer Training
 
-DRIFT 是由 Beike Language and Intelligence 团队提出的一个开源在线自演化策略优化框架。该框架旨在使大型语言模型在不依赖外部专家监督的情况下，实现复杂推理和科学问题求解能力的持续提升。
+<p align="center">
+  <b>English</b> | <a href="README_zh.md">简体中文</a>
+</p>
 
-🌟 核心亮点 (Key Results)
-🏆 综合性能第一：在 5 个学术与多轮推理基准测试中平均得分 79.5 (Avg@16)，位列第一。
-🛠️ 工具调用跃升：在 Tool Use 任务上达到 79.2，相较于 SRPO 显著提升 +8.0。
-🚀 基础模型大幅强化：相比于基座模型 Qwen3-8B，全维度平均提升达 +30.0。
-📖 简介与方法 (Methodology)
-现有大模型在自我蒸馏和强化学习中常遭遇学分分配不精确的问题。DRIFT 通过协同整合以下四大核心机制，构建了一个结构化的自我改进循环：
+<p align="center">
+  <a href="https://arxiv.org/abs/2606.30345"><img src="https://img.shields.io/badge/arXiv-2606.30345-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://github.com/LianjiaTech/drift"><img src="https://img.shields.io/badge/GitHub-Repository-blue" alt="GitHub"></a>
+  <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow" alt="Hugging Face"></a>
+</p>
 
-动态难度路由 (Dynamic Difficulty Routing)：利用历史通过率作为模型掌握程度的稳定估计，在宏观层面上动态决定何时从成功的轨迹中提取经验（自蒸馏）、何时探索新策略（RL）以及何时减少冗余训练。
-结构化节奏门控探索 (Rhythm Gating Exploration)：在微观（Token）层面上，引入一种保持结构的探索机制。仅当一个 Token 在局部表现优于教师模型，并且是关键的结构锚点（如逻辑或因果节点）时，才放大策略更新。
-两阶段课程学习 (Two-Stage Curriculum Learning)：第一阶段通过熵驱动的自蒸馏（Entropy-Driven Self-Distillation）快速预热并积累高质量的成功缓冲区；第二阶段转向平衡的探索、纠错与收敛的自演化路由。
-基于成功缓冲的经验回放 (Experience Replay via Success Buffer)：复用高质量历史轨迹，为边缘问题提供结构化探索奖励，支持模型平滑演化。
-📊 实验结果 (Experimental Results)
-基于 Qwen3-8B，DRIFT 在多个领域（生物、化学、材料、物理及工具调用）中表现出了强大的跨领域泛化能力和训练稳定性。
+DRIFT is an open-source online self-evolving policy optimization framework proposed by the Beike Language and Intelligence team. This framework is designed to enable large language models to continuously improve their complex reasoning and scientific problem-solving capabilities without relying on external expert supervision.
 
-Method / Model	Biology	Chemistry	Materials	Physics	Tool Use	Average
-Qwen3-8B (Base)	30.8	41.2	58.9	59.2	57.5	49.5
-SDPO (Paper)	56.8	80.9	78.4	75.6	68.5	72.0
-SDPO (Reproduced)	64.8	78.9	76.1	72.7	67.7	72.0
-GRPO (Paper)	59.9	74.5	77.1	72.7	65.7	70.0
-GRPO (Reproduced)	47.4	65.6	73.5	60.6	67.7	63.0
-SRPO (Paper)	72.8	83.0	81.5	78.4	71.2	77.4
-SC-SDPO (Paper)	65.4	80.6	79.3	81.6	67.3	74.8
-DRIFT (Ours)	74.4	82.0	81.4	80.5	79.2	79.5
-一、 获取代码与补丁合并
-请在您的终端中执行以下命令获取项目最终代码：
+---
 
+## 🌟 Key Results
+
+* **🏆 Top Comprehensive Performance**: Achieved a leading average score of **79.5 (Avg@16)** across 5 academic and multi-turn reasoning benchmarks.
+* **🛠️ Significant Tool-Use Improvement**: Reached **79.2** on Tool Use tasks, representing a notable **+8.0** improvement over SRPO.
+* **🚀 Substantial Base Model Enhancement**: Delivered an average improvement of **+30.0** across all dimensions compared to the Qwen3-8B base model.
+
+---
+
+## 📖 Methodology
+
+Existing large language models often face inaccurate credit assignment challenges in self-distillation and reinforcement learning. DRIFT addresses this by integrating four core mechanisms to build a structured self-improvement loop:
+
+1. **Dynamic Difficulty Routing**: Utilizes historical pass rates as a stable estimation of model mastery. At a macro level, it dynamically decides when to extract experience from successful trajectories (self-distillation), when to explore new policies (RL), and when to reduce redundant training.
+2. **Structured Rhythm Gating Exploration**: Introduces a structure-preserving exploration mechanism at the micro (token) level. Policy updates are amplified only when a token locally outperforms the teacher model and serves as a critical structural anchor (such as logical or causal nodes).
+3. **Two-Stage Curriculum Learning**: Stage one uses Entropy-Driven Self-Distillation to quickly warm up the model and build a high-quality success buffer. Stage two transitions to a balanced self-evolving routing of exploration, error correction, and convergence.
+4. **Experience Replay via Success Buffer**: Reuses high-quality historical trajectories to provide structured exploration rewards for marginal problems, facilitating a smooth evolution of the model.
+
+---
+
+## 📊 Experimental Results
+
+Evaluated on Qwen3-8B, DRIFT demonstrates strong cross-domain generalization and training stability across multiple fields, including biology, chemistry, materials, physics, and tool use.
+
+| Method / Model | Biology | Chemistry | Materials | Physics | Tool Use | Average |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Qwen3-8B (Base) | 30.8 | 41.2 | 58.9 | 59.2 | 57.5 | 49.5 |
+| SDPO (Paper) | 56.8 | 80.9 | 78.4 | 75.6 | 68.5 | 72.0 |
+| SDPO (Reproduced) | 64.8 | 78.9 | 76.1 | 72.7 | 67.7 | 72.0 |
+| GRPO (Paper) | 59.9 | 74.5 | 77.1 | 72.7 | 65.7 | 70.0 |
+| GRPO (Reproduced) | 47.4 | 65.6 | 73.5 | 60.6 | 67.7 | 63.0 |
+| SRPO (Paper) | 72.8 | **83.0** | **81.5** | 78.4 | 71.2 | 77.4 |
+| SC-SDPO (Paper) | 65.4 | 80.6 | 79.3 | **81.6** | 67.3 | 74.8 |
+| **DRIFT (Ours)** | **74.4** | 82.0 | 81.4 | 80.5 | **79.2** | **79.5** |
+
+---
+
+## 1. Code Acquisition and Patch Merging
+
+Run the following commands in your terminal to clone the repository and apply the patches:
+
+```bash
 git clone https://github.com/LianjiaTech/drift.git && cd drift && \
-cat sdpo_patch_part_* > sdpo_modifications.patch && \
+cat patch/sdpo_patch_part_* > sdpo_modifications.patch && \
 git clone https://github.com/LDLINGLINGLING/SDPO.git temp_sdpo_base && \
 cd temp_sdpo_base && git apply --whitespace=nowarn ../sdpo_modifications.patch && cd .. && \
 rsync -av \
@@ -39,50 +65,58 @@ rsync -av \
   --exclude='.gitignore' \
   --exclude='*pseudocode.py' \
   temp_sdpo_base/ ./ && \
-rm -rf temp_sdpo_base sdpo_modifications.patch sdpo_patch_part_*
-二、 实验脚本运行指南
-合并完成后，所有的运行代码和配置都将应用至 DRIFT-main 文件夹中。您需要先进入 DRIFT-main 目录，然后即可直接运行以下实验脚本：
+rm -rf temp_sdpo_base sdpo_modifications.patch
+```
 
+---
+
+## 2. Experimental Script Execution Guide
+
+Once the merge is complete, all execution code and configurations will be applied to the `DRIFT-main` folder. Navigate to the `DRIFT-main` directory to run the experimental scripts:
+
+```bash
 cd DRIFT-main
-1. 科学推理评估实验 (SciKnowEval)
-针对不同的学科数据集（以 Qwen3-8B 为基础），我们提供了以下运行脚本（路径位于 experiments/generalization/run_sciknoweval_qwen3-8b/ 下）：
+```
 
-材料科学 (Material)：
-bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_material.sh
-生物学 (Biology)：
-bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_biology.sh
-物理学 (Physics)：
-bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_physics.sh
-化学 (Chemistry)：
-bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_chemistry.sh
-2. 工具调用实验 (ToolUse)
-针对工具使用任务（以 Qwen3-8B 为基础），运行脚本路径位于 experiments/generalization/run_qwen3-8b/ 下：
+### 1. Scientific Reasoning Evaluation (SciKnowEval)
 
-工具使用 (ToolUse)：
-bash experiments/generalization/run_qwen3-8b/run_tooluse_dift.sh
-💡 运行提示： 在 DRIFT-main 目录下可直接一键执行上述对应的 .sh 脚本，每个脚本对应的名称即代表了研究所采用的特定数据集和任务。
+We provide scripts for different scientific domains based on the Qwen3-8B model (located under `experiments/generalization/run_sciknoweval_qwen3-8b/`):
 
-三、 核心机制伪代码说明
-我们在 drift 根目录下提供了 DRIFT 框架三大核心机制的独立 Python 伪代码，供快速阅读与研究：
+* **Materials Science (Material)**:
+  ```bash
+  bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_material.sh
+  ```
+* **Biology (Biology)**:
+  ```bash
+  bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_biology.sh
+  ```
+* **Physics (Physics)**:
+  ```bash
+  bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_physics.sh
+  ```
+* **Chemistry (Chemistry)**:
+  ```bash
+  bash experiments/generalization/run_sciknoweval_qwen3-8b/run_sciknoweval_chemistry.sh
+  ```
 
-buffer_pseudocode.py (Success Buffer 机制)
+### 2. Tool Use Experiments (ToolUse)
 
-机制说明：该部分展示了历史高质量成功轨迹的在线复用与动态替换逻辑。通过维护一个基于奖励（Reward-based）的轻量级 Success Buffer，在当前批次探索失败时提供特权信息指导，避免样本浪费，保持模型稳定的自演化记忆。
-problem_pass_rate_routing_pseudocode.py (Difficulty Routing 机制)
+For tool-use tasks based on Qwen3-8B, the script is located in the `experiments/generalization/run_qwen3-8b/` directory:
 
-机制说明：该部分展示了样本难度的自适应路由控制。通过平滑维护每个问题的历史通过率（EMA Pass Rate），动态评估模型当前的认知边界。根据掌握程度，将困难样本路由至自蒸馏纠错通道，边界样本路由至强化探索通道，简单样本降低冗余优化，实现时空维度的全局梯度信噪比调优。
-rhythm_rebellious_pseudocode.py (Rhythm-Gated Structured Exploration 机制)
+* **Tool Use**:
+  ```bash
+  bash experiments/generalization/run_qwen3-8b/run_tooluse_dift.sh
+  ```
 
-机制说明：该部分展示了词元（Token）级的结构化探索加权逻辑。利用学生与教师模型在推理生成过程中的时间熵动力学（Temporal Entropy Dynamics）差异，精准捕捉概率分布发生突变与塌缩的“逻辑奇点”，进而通过 Rhythm 门控选择性地对 Rebellious Bonus（局部超越步）进行放大，避免在低语义负载词元上的无效梯度耗散。
-📝 引用 (Citation)
-如果您在研究中使用了我们的代码或模型，请引用我们的工作：
+> 💡 **Running Tip**: You can execute the corresponding `.sh` scripts directly from the `DRIFT-main` directory. The name of each script indicates the specific dataset and task evaluated.
 
-@misc{beike2026drift,
-      title         = {DRIFT: Difficulty Routing Self-Distillation with Rhythm Gating Exploration and Success Buffer Training},
-      author        = {Beike Language and Intelligence},
-      year          = {2026},
-      eprint        = {2606.17123},
-      archivePrefix = {arXiv},
-      primaryClass  = {cs.CL},
-      url           = {https://github.com/LianjiaTech/drift},
-}
+---
+
+## 3. Core Mechanism Pseudocode
+
+In the root directory of the `drift` repository, we provide independent Python pseudocode for DRIFT's three core mechanisms for reference and research:
+
+* **`buffer_pseudocode.py` (Success Buffer Mechanism)**
+  * **Description**: Demonstrates the online reuse and dynamic replacement logic of high-quality historical successful trajectories. By maintaining a lightweight, reward-based Success Buffer, it provides privileged guidance when the current exploration batch fails, preventing sample waste and maintaining stable self-evolving model memory.
+* **`problem_pass_rate_routing_pseudocode.py` (Difficulty Routing Mechanism)**
+  * **Description**: Demonstrates adaptive routing based on problem difficulty. By tracking a smoothed historical pass rate (EMA Pass Rate) for each problem, the system dynamically estimates the model's current cognitive boundary. Based on the mastery level, difficult samples are routed to the self-distillation error correction channel, while boundary samples are routed to the reinforcement exploration channel.
