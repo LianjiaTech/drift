@@ -17,7 +17,9 @@ DRIFT is an open-source online self-evolving policy optimization framework propo
 ## 🌟 Key Results
 
 * **🏆 Top Comprehensive Performance**: Achieved a leading average score of **79.5 (Avg@16)** across 5 academic and multi-turn reasoning benchmarks.
+![alt text](./asset/image.png)
 * **🛠️ Significant Tool-Use Improvement**: Reached **79.2** on Tool Use tasks, representing a notable **+8.0** improvement over SRPO.
+![alt text](./asset/image1.png)
 * **🚀 Substantial Base Model Enhancement**: Delivered an average improvement of **+30.0** across all dimensions compared to the Qwen3-8B base model.
 
 ---
