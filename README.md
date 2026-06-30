@@ -129,7 +129,7 @@ In the root directory of the `drift` repository, we provide independent Python p
 * **`rhythm_rebellious_pseudocode.py` (Rhythm-Gated Rebellious Bonus Mechanism)**
   * **Description**: Demonstrates token-level structured exploration enhancement. By analyzing the differences in local conditional entropy collapse of both student and teacher models along the reasoning path, it localizes critical logical transitions and causal decision anchors (Anchor Rhythm). It selectively amplifies policy gradients only when the student locally outperforms the teacher (Rebellious Bonus) at these structural positions, ensuring fine-grained credit assignment while effectively filtering background noise.
 
-  ## 📄 Citation
+## 📄 Citation
 
 If you find DRIFT helpful in your research or applications, please consider citing our paper:
 
