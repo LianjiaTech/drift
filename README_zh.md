@@ -119,3 +119,5 @@ cd DRIFT-main
   * **机制说明**：展示了历史高质量成功轨迹的在线复用与动态替换逻辑。通过维护一个基于奖励（Reward-based）的轻量级 Success Buffer，在当前批次探索失败时提供特权信息指导，避免样本浪费，保持模型稳定的自演化记忆。
 * **`problem_pass_rate_routing_pseudocode.py` (Difficulty Routing 机制)**
   * **机制说明**：展示了样本难度的自适应路由控制。通过平滑维护每个问题的历史通过率（EMA Pass Rate），动态评估模型当前的认知边界。根据掌握程度，将困难样本路由至自蒸馏纠错通道，边界样本路由至强化探索通道，
+  * **`rhythm_rebellious_pseudocode.py` (Rhythm-Gated Rebellious Bonus 机制)**
+  * **机制说明**：展示了 Token 级别的结构化探索增强。结合学生与教师模型在推理路径上的局部条件熵塌缩（Entropy Collapse）差异，定位关键的逻辑转折与因果锚点（Anchor Rhythm）。仅当学生在这些结构性位置上局部超越（Rebellious Bonus）教师时，才选择性放大策略更新梯度，从而在控制噪声的同时实现高精度的信用分配。
