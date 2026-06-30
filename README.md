@@ -37,6 +37,8 @@ Existing large language models often face inaccurate credit assignment challenge
 
 Evaluated on Qwen3-8B, DRIFT demonstrates strong cross-domain generalization and training stability across multiple fields, including biology, chemistry, materials, physics, and tool use.
 
+<div align="center">
+
 | Method / Model | Biology | Chemistry | Materials | Physics | Tool Use | Average |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Qwen3-8B (Base) | 30.8 | 41.2 | 58.9 | 59.2 | 57.5 | 49.5 |
@@ -47,6 +49,8 @@ Evaluated on Qwen3-8B, DRIFT demonstrates strong cross-domain generalization and
 | SRPO (Paper) | 72.8 | **83.0** | **81.5** | 78.4 | 71.2 | 77.4 |
 | SC-SDPO (Paper) | 65.4 | 80.6 | 79.3 | **81.6** | 67.3 | 74.8 |
 | **DRIFT (Ours)** | **74.4** | 82.0 | 81.4 | 80.5 | **79.2** | **79.5** |
+
+</div>
 
 ---
 
