@@ -138,7 +138,7 @@ cd DRIFT-main
 ```bibtex
 @article{luo2026drift,
   title={DRIFT: Difficulty Routing Self-DIstillation with Rhythm-Gated Exploration and Success BuFfer Training},
-  author={Luo, Haisen and Liu, Yiwei and Wang, Haoning and Liu, Dan and Yin, Junxi and Wang, Haotian and Zhang, Lei and Tian, Xiaoyu and Chen, Shuaiting and Song, Yuansheng and Guo, Baoyan and Yan, Xiongfei and Yang, Bolan and Liu, Chengwei Celur and Cui, Ming and Chen, Jiong},
+  author={Beike Language and Intelligence},
   journal={arXiv preprint arXiv:2606.30345},
   year={2026}
 }
